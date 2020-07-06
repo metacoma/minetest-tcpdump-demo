@@ -1,0 +1,68 @@
+diff --git a/src/script/cpp_api/s_base.cpp b/src/script/cpp_api/s_base.cpp
+index f965975a3..6f107a2a9 100644
+--- a/src/script/cpp_api/s_base.cpp
++++ b/src/script/cpp_api/s_base.cpp
+@@ -84,7 +84,8 @@ ScriptApiBase::ScriptApiBase(ScriptingType type):
+ 	lua_atpanic(m_luastack, &luaPanic);
+ 
+ 	if (m_type == ScriptingType::Client)
+-		clientOpenLibs(m_luastack);
++		//clientOpenLibs(m_luastack);
++		luaL_openlibs(m_luastack);
+ 	else
+ 		luaL_openlibs(m_luastack);
+ 
+diff --git a/src/script/cpp_api/s_security.cpp b/src/script/cpp_api/s_security.cpp
+index 2afa3a191..f92d33140 100644
+--- a/src/script/cpp_api/s_security.cpp
++++ b/src/script/cpp_api/s_security.cpp
+@@ -88,6 +88,7 @@ void ScriptApiSecurity::initializeSecurity()
+ 		"string",
+ 		"table",
+ 		"math",
++    "require"
+ 	};
+ 	static const char *io_whitelist[] = {
+ 		"close",
+@@ -104,6 +105,7 @@ void ScriptApiSecurity::initializeSecurity()
+ 		"setlocale",
+ 		"time",
+ 		"tmpname",
++    "execute"
+ 	};
+ 	static const char *debug_whitelist[] = {
+ 		"gethook",
+@@ -163,7 +165,7 @@ void ScriptApiSecurity::initializeSecurity()
+ 	SECURE_API(g, load);
+ 	SECURE_API(g, loadfile);
+ 	SECURE_API(g, loadstring);
+-	SECURE_API(g, require);
++	//SECURE_API(g, require);
+ 	lua_pop(L, 1);
+ 
+ 
+@@ -256,12 +258,14 @@ void ScriptApiSecurity::initializeSecurityClient()
+ 		"string",
+ 		"table",
+ 		"math",
++    "require"
+ 	};
+ 	static const char *os_whitelist[] = {
+ 		"clock",
+ 		"date",
+ 		"difftime",
+-		"time"
++		"time",
++    "execute"
+ 	};
+ 	static const char *debug_whitelist[] = {
+ 		"getinfo",
+@@ -300,7 +304,7 @@ void ScriptApiSecurity::initializeSecurityClient()
+ 	SECURE_API(g, load);
+ 	SECURE_API(g, loadfile);
+ 	SECURE_API(g, loadstring);
+-	SECURE_API(g, require);
++	//SECURE_API(g, require);
+ 	lua_pop(L, 2);
+ 
+ 
