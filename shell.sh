@@ -1,8 +1,7 @@
 #!/bin/sh
 
-. ./env
-docker run -it --rm --name ${CONTAINER_INAME}                         \
+docker run -it --rm --name ${CONTAINER_NAME}                         \
         -p 0.0.0.0:30000:30000/udp                                    \
         --entrypoint /bin/bash                                        \
         ${IMAGE}                                                      \
-        -c /bin/bash || docker exec -ti ${CONTAINER_INAME} /bin/bash
+        -c /bin/bash || docker exec -ti ${CONTAINER_NAME} /bin/bash
