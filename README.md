@@ -1,6 +1,6 @@
 This is minetest mod (and environment) to start minetest server in a docker container and vizualise the tcpdump flow. Instead thousand of words, watch the video:
 
-[![minetest-tcpdump-video](https://img.youtube.com/vi//0.jpg)](https://www.youtube.com/watch?v=)
+[![minetest-tcpdump-video](https://img.youtube.com/vi/pSENbiv_R_g/0.jpg)](https://www.youtube.com/watch?v=pSENbiv_R_g)
 
 
 Status:
